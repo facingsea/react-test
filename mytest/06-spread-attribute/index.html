@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spread Attributes Test</title>
+    <script src="../../react-15.1.0/build/react.js"></script>
+    <script src="../../react-15.1.0/build/react-dom.js"></script>
+    <script src="../../lib/browser.min.js"></script>
+</head>
+<body>
+    <div id="container01"></div>
+    <div id="container02"></div>
+    <div id="container03"></div>
+
+    <script type="text/babel">
+        /**
+         * Props 应该被当作禁止修改的。修改 props 对象可能会导致预料之外的结果，所以最好不要去修改 props 对象。
+         *
+         */
+
+        var MyComponent = React.createClass({
+            render: function(){
+                console.log(this.props);
+                return (
+                        <div>
+                            <div>{this.props.foo}</div>
+                            <div>{this.props.bar}</div>
+                        </div>
+                );
+            }
+        });
+
+        /**
+         * JSX 的新特性 - 延展属性：
+         * 传入对象的属性会被复制到组件内。
+         *   它能被多次使用，也可以和其它属性一起用。注意顺序很重要，后面的会覆盖掉前面的。
+         * 这个 ... 操作符（也被叫做延展操作符 － spread operator）已经被 ES6 数组 支持。
+         */
+        var props = {};
+        props.foo = 'hello';
+        props.bar = 'world';
+        //var component = <MyComponent {...props} />;   // right
+        var component = <MyComponent {...props} foo={'override'} />; // foo will be override.
+
+        ReactDOM.render(component, document.getElementById('container01'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Use JSX</title>
+    <script src="../../react-15.1.0/build/react.js"></script>
+    <script src="../../react-15.1.0/build/react-dom.js"></script>
+    <script src="../../lib/browser.min.js"></script>
+</head>
+<body>
+    <div id="container01"></div>
+    <div id="container02"></div>
+    <div id="container03"></div>
+    <div id="container04"></div>
+    <div id="container05"></div>
+
+    <script type="text/babel">
+        // 要渲染HTML标签，只需在JSX里使用小写字母的标签名
+        var myDivElement = <div className="foo" />;
+        ReactDOM.render(myDivElement, document.getElementById('container01'));
+    </script>
+
+    <script type="text/babel" >
+        // 要渲染 React 组件，只需创建一个大写字母开头的本地变量
+        var MyComponent = React.createClass({
+            render: function(){
+                return (
+                        <span>Hello MyComponent.</span>
+                );
+            }
+        });
+        //var myElement = <MyComponent />;
+        ReactDOM.render(<MyComponent />, document.getElementById('container02'));
+    </script>
+</body>
+</html>

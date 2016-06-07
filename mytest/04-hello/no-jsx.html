@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>No JSX test</title>
+    <script src="../../react-15.1.0/build/react.js"></script>
+    <script src="../../react-15.1.0/build/react-dom.js"></script>
+</head>
+<body>
+    <div id="container01"></div>
+    <div id="container02"></div>
+    <div id="container03"></div>
+    <div id="container04"></div>
+    <div id="container05"></div>
+
+    <script type="text/javascript">
+        var child = React.createElement('li', null, 'Test Content');
+        var root = React.createElement('ul', {className: 'my-list'}, child);
+        ReactDOM.render(root, document.getElementById('container01'));
+    </script>
+    <script type="text/javascript">
+        // 采用内部预定义的类型
+        var Factory = React.createFactory('span');
+        var root02 = Factory({className: 'my-span'}, 'Test Span');
+        ReactDOM.render(root02, document.getElementById('container02'));
+    </script>
+
+    <script type="text/javascript">
+        var root03 = React.DOM.ul({className: 'my-list'}, React.DOM.li(null, 'li content test'));
+        ReactDOM.render(root03, document.getElementById('container03'));
+    </script>
+</body>
+</html>
